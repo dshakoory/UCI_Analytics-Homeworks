@@ -21,7 +21,7 @@ with open(budget, newline = "") as csvfile:
 #headerrow
     y= next(x)
 
-    #Reading the first row (so that we track the changes properly)
+    #Reading the first row
     y = next(x) #y represents the first row of data
     monthscount=monthscount + 1
     pl =pl + int(y[1])
@@ -41,7 +41,7 @@ with open(budget, newline = "") as csvfile:
         #The total number of months included in the dataset
         monthscount=monthscount + 1
 
-        #The net total amount of "Profit/Losses" over the entire period
+        #The net total amount of "Profit and/or Losses"
         pl = pl + int(i[1])
 
 
@@ -57,10 +57,8 @@ with open(budget, newline = "") as csvfile:
    #The greatest decrease in losses (date and amount) over the entire period
     gd = min(profandloss ) #gd=Greatest Decrease in profit
     windex = profandloss.index(gd)
-    wd = date[windex]
+    wd = date[windex]#greatest decrease in profit date
 
- #------------------------------------------------------------------------------------------   
-    
 
 Resutls=( "Financial Analysis\n"
 "---------------------------------------\n"
@@ -69,10 +67,9 @@ f"Total: ${str(pl)}\n"
 f"Average Change: ${str(round(Average,2))}\n"
 f"Greatest Increase in Profits: {bd} (${str(gi)})\n"
 f"Greatest Decrease in Profits: {wd} (${str(gd)})\n")
-
 print(Resutls)
 
 
-
+#your final script should both print the analysis to the terminal and export a text file with the results
 with open(budgetanalysis, "w") as txt_file:
     txt_file.write(Resutls)
